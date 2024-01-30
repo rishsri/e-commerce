@@ -25,7 +25,11 @@ const Header = () => {
         window.addEventListener("scroll", handleScroll);
     }, []);
 
-    // const { cartCount, showCart, setShowCart } = useContext(Context);
+     const { cartCount, showCart, setShowCart } = useContext(Context);
+
+     const handleCart = () => {
+        setShowCart(true);
+     }
 
     return (
         <>
@@ -46,15 +50,16 @@ const Header = () => {
                         <AiOutlineHeart />
                         <span
                             className="cart-icon"
-                            // onClick={() => setShowCart(true)}
+                             onClick={handleCart}
                         >
                             <CgShoppingCart />
-                            {/* {!!cartCount && <span>{cartCount}</span>} */}
+                            {!!cartCount && <span>{cartCount}</span>}
                         </span>
                     </div>
                 </div>
             </header>
-           
+            {searchModal && <Search setSearchModal={setSearchModal} />}
+            {showCart && <Cart />}
         </>
     );
 };
